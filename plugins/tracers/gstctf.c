@@ -578,6 +578,9 @@ ctf_file_init (void)
         goto error;
       }
 
+      setvbuf(ctf_descriptor->metadata, NULL, _IONBF, 0);
+      setvbuf(ctf_descriptor->datastream, NULL, _IONBF, 0);
+
       ctf_descriptor->start_time = gst_util_get_timestamp ();
       ctf_descriptor->file_output_disable = FALSE;
 
