@@ -1,0 +1,28 @@
+From b08b7d44419ffa59b39c5b89221e1d8c9bf976ea Mon Sep 17 00:00:00 2001
+From: Sangjung Woo <sangjung.woo@samsung.com>
+Date: Thu, 25 Jun 2020 17:01:22 +0900
+Subject: [PATCH] Disable gtk documentation
+
+This patch disables the gtk documentation when building gst-shark.
+
+Signed-off-by: Sangjung Woo <sangjung.woo@samsung.com>
+---
+ autogen.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/autogen.sh b/autogen.sh
+index f718b9c..9112428 100755
+--- a/autogen.sh
++++ b/autogen.sh
+@@ -40,7 +40,7 @@ then
+     ln -s ../../common/hooks/pre-commit.hook .git/hooks/pre-commit
+ fi
+ 
+-CONFIGURE_DEF_OPT='--enable-maintainer-mode --enable-gtk-doc'
++CONFIGURE_DEF_OPT='--enable-maintainer-mode'
+ 
+ autogen_options $@
+ 
+-- 
+2.7.4
+

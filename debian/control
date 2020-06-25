@@ -1,0 +1,16 @@
+Source: gst-shark
+Section: libs
+Priority: optional
+Maintainer: Michael Gruner <michael.gruner@ridgerun.com>
+Uploaders: Sangjung Woo <again4you@gmail.com>
+Build-Depends: debhelper (>=9), libgstreamer1.0-dev, autotools-dev, dh-autoreconf, automake, autoconf, libtool
+Standards-Version: 3.9.6
+Homepage: https://github.com/RidgeRun/gst-shark
+
+Package: gst-shark
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: A front end for GstTracer
+ GstShark leverages GStreamers newest instrumentation subsystem by installing a set of custom hooks to the trace
+ points. A variety of data analytics are extracted and presented to the user in a graphical, friendly way.

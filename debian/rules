@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+export DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+topdir=$(shell pwd)
+buildroot=${topdir}/debian/tmp
+packagingdir=${topdir}/packaging
+
+SOURCE0001=common.tar.gz
+PATCH0001=0001-Disable-gtk-documentation.patch
+
+%:
+	dh $@ --parallel
+
+override_dh_auto_configure:
+	mkdir -p ${topdir}/common
+	tar -xf ${packagingdir}/${SOURCE0001} -C ${topdir}/common
+	patch -p1 < ${packagingdir}/${PATCH0001}
+	./autogen.sh --prefix /usr --disable-graphviz --disable-check --libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_auto_install:
+	PREFIX=${buildroot}/usr make install DESTDIR=${buildroot} 
+
+override_dh_install:
+	dh_install --sourcedir=debian/tmp --list-missing
